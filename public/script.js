@@ -3,9 +3,7 @@ let $uvuIdInput = $('#uvuId')
 let $courseInput = $('#course')
 let $logsDiv = $('.logs-div')
 
-$logsDiv.addClass('farty shite shoop')
-
-// $logsDiv.css('display', 'none') NEEDED
+$logsDiv.css('display', 'none')
 
 // EVENT LISTENERS ====================================
 
@@ -40,12 +38,12 @@ function checkUvuId() {
 
 function bindEventToLogs() {
   $('#logsUl li').on('click', function () {
-    showHideLog($(this))
+    toggleLog($(this))
   })
 }
 
 // toggle displaying of log text
-function showHideLog($log) {
+function toggleLog($log) {
   logPre = $log.children('pre')
   if (logPre.css('display') != 'none') logPre.css('display', 'none')
   else logPre.css('display', 'block')
@@ -91,6 +89,23 @@ async function refreshLogs() {
       </li>`
     )
   }
+  $logsList.children('li').addClass(
+    `group
+    mb-4
+      py-1 px-3
+      rounded
+      border-2
+      border-amber-600
+      hover:border-amber-500 hover:cursor-pointer
+      hover:bg-slate-100`
+  )
+  $logsList.children('small').addClass(
+    `text-sm
+      font-bold
+      text-amber-600
+      group-hover:text-amber-500`
+  )
+  $logsList.children('pre').addClass(`whitespace-pre-wrap`)
   $logsDiv.css('display', 'block')
 
   $('#uvuIdSpan').text(`for ${$uvuIdInput.val()}`)

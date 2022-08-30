@@ -8,19 +8,18 @@
       href="https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="bg-white p-4">
-    <form id="logForm">
+  <body class="flex justify-center bg-white p-4">
+    <form class="w-full max-w-lg" id="logForm">
       <section class="bg-slate-200 rounded p-4 mb-4">
         <h3 class="mb-2 text-lg font-semibold text-sky-600">
           Student Information
         </h3>
-        <label class="block mb-1 font-semibold text-slate-600" for="course"
+        <label class="block mb-1 font-semibold text-slate-500" for="course"
           >Course</label
         >
         <select
-          class="w-full bg-white p-1 rounded"
+          class="w-full bg-white px-1 py-2 rounded"
           aria-label="Select Course"
           id="course"
           name="course"
@@ -34,13 +33,13 @@
 
         <div class="uvu-id hidden">
           <label
-            class="block mb-1 mt-3 font-semibold text-slate-600"
+            class="block mb-1 mt-3 font-semibold text-slate-500"
             for="uvuId"
             >UVU ID</label
           >
 
           <input
-            class="w-full bg-white py-1 px-2 rounded"
+            class="w-full bg-white py-2 px-2 rounded"
             type="text"
             id="uvuId"
             name="uvuId"
@@ -62,26 +61,9 @@
         </h3>
         <div class="logs-div">
           <ul data-cy="logs" id="logsUl">
-            <li
-              class="
-                group
-                py-1
-                px-3
-                rounded
-                border-2 border-teal-600
-                hover:border-teal-500 hover:cursor-pointer
-              "
-            >
+            <li>
               <div>
-                <small
-                  class="
-                    text-sm
-                    font-semibold
-                    text-teal-600
-                    group-hover:text-teal-500
-                  "
-                  >1/23/2021 1:23:36 PM</small
-                >
+                <small>1/23/2021 1:23:36 PM</small>
               </div>
               <pre><p>Initial comment. Hello World</p></pre>
             </li>
@@ -96,19 +78,33 @@
           </ul>
         </div>
         <label
-          class="block mb-1 font-semibold text-slate-600"
+          class="block mb-1 font-semibold text-slate-500"
           for="logBodyInput"
           >New Log
         </label>
         <textarea
-          class="w-full bg-white p-1 rounded"
+          class="w-full bg-white p-1 rounded mb-4"
           id="logBodyInput"
           style="height: 75px"
           aria-label="add log textarea"
           data-cy="log_textarea"
         ></textarea>
 
-        <button id="submit" type="submit" data-cy="add_log_btn" disabled>
+        <button
+          class="
+            bg-amber-500
+            py-2
+            px-4
+            rounded
+            text-white
+            hover:bg-amber-400
+            disabled:bg-slate-400 disabled:text-slate-300
+          "
+          id="submit"
+          type="submit"
+          data-cy="add_log_btn"
+          disabled
+        >
           Add Log
         </button>
       </section>

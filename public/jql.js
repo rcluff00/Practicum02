@@ -27,12 +27,11 @@ class ElementCollection extends Array {
     else return this[0].style[propCamel]
   }
 
-  addClass(cls) {
-    arr = cls.split(' ')
-    console.log(arr)
-    // this.forEach((elem) => {
-    //   elem.classList.add(className)
-    // })
+  addClass(className) {
+    let classes = className.split(/\s+/)
+    this.forEach((elem) => {
+      elem.classList.add(...classes)
+    })
   }
 
   removeClass(className) {
@@ -84,6 +83,8 @@ class ElementCollection extends Array {
   children(param) {
     if (typeof param === 'string' || param instanceof String) {
       return new ElementCollection(...this[0].querySelectorAll(param))
+    } else if (!param) {
+      return new ElementCollection(...this[0].childeNodes)
     } else {
       return new ElementCollection(param)
     }
@@ -107,6 +108,13 @@ class ElementCollection extends Array {
     } else {
       return this[0].innerText
     }
+  }
+
+  each(fn) {
+    this.forEach((elem) => {
+      let $elems = new ElementCollection(elem)
+      fn($elems)
+    })
   }
 }
 
