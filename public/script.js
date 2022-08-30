@@ -6,7 +6,6 @@ let courseInput = $('#course')
 let logsDiv = $('.logs-div')
 console.log(logsDiv)
 logsDiv.css('display', 'none')
-alert(logsDiv.css('display'))
 
 $('#logForm').on('submit', function (event) {
   event.preventDefault()
@@ -94,7 +93,7 @@ async function refreshLogs() {
 
   $('#uvuIdSpan').text(`for ${uvuIdInput.val()}`)
   addEventsToLogs()
-  $('button').disabled = false
+  $('button').attr('disabled', 'false')
 }
 
 function postData(url, data) {

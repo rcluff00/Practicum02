@@ -27,6 +27,16 @@ class ElementCollection extends Array {
     else return this[0].style[propCamel]
   }
 
+  attr(attr, val) {
+    if (typeof val === 'string' || val instanceof String) {
+      this.forEach((elem) => {
+        elem.setAttribute(attr, val)
+      })
+    } else {
+      return this.getAttribute(attr)
+    }
+  }
+
   append(str) {
     this.forEach((elem) => {
       elem.innerHTML += str
