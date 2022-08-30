@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Student Log</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <script src="jQL.js"></script>
+    <form id="logForm">
+      <section class="form-section">
+        <h3>Student Information</h3>
+        <label for="course">Course</label><br />
+        <select
+          aria-label="Select Course"
+          id="course"
+          name="course"
+          data-cy="course_select"
+        >
+          <option selected value="">Choose Courses</option>
+          <option value="cs4690">CS 4690</option>
+          <option value="cs4660">CS 4660</option>
+          <option value="cs3380">CS 3380</option></select
+        ><br />
+
+        <div class="uvu-id">
+          <label for="uvuId">UVU ID</label><br />
+
+          <input
+            type="text"
+            id="uvuId"
+            name="uvuId"
+            data-cy="uvuId_input"
+            maxlength="8"
+            pattern="[0-9]{0,8}"
+            placeholder="10234567"
+          />
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay">
+          Student Logs <span id="uvuIdSpan"></span>
+        </h3>
+        <div class="logs-div">
+          <ul data-cy="logs" id="logsUl">
+            <li>
+              <div><small>1/23/2021 1:23:36 PM</small></div>
+              <pre><p>Initial comment. Hello World</p></pre>
+            </li>
+            <li>
+              <div><small>1/24/2021 2:43:12 PM</small></div>
+              <pre><p>MongoDB is looking really good, still need to get atlas up and running.</p></pre>
+            </li>
+            <li>
+              <div><small>1/27/2021 5:58:10 PM</small></div>
+              <pre><p>Atlas is up and running</p></pre>
+            </li>
+          </ul>
+        </div>
+        <label>New Log</label><br />
+        <textarea
+          id="logBodyInput"
+          style="height: 75px"
+          aria-label="add log textarea"
+          data-cy="log_textarea"
+        ></textarea
+        ><br />
+
+        <button id="submit" type="submit" data-cy="add_log_btn" disabled>
+          Add Log
+        </button>
+      </section>
+    </form>
+    <script src="jql.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
