@@ -10,12 +10,15 @@
     />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
+  <body class="bg-slate-100">
     <form id="logForm">
-      <section class="form-section">
-        <h3>Student Information</h3>
-        <label for="course">Course</label><br />
+      <section class="bg-slate-300 rounded p-4 mb-4">
+        <h3 class="mb-4 text-lg font-semibold text-sky-600">
+          Student Information
+        </h3>
+        <label class="text-slate-600" for="course">Course</label><br />
         <select
+          class="w-full bg-slate-100 p-1 rounded"
           aria-label="Select Course"
           id="course"
           name="course"
@@ -27,10 +30,11 @@
           <option value="cs3380">CS 3380</option></select
         ><br />
 
-        <div class="uvu-id">
-          <label for="uvuId">UVU ID</label><br />
+        <div class="uvu-id hidden">
+          <label class="text-slate-600" for="uvuId">UVU ID</label><br />
 
           <input
+            class="w-full bg-slate-100 py-1 px-2 rounded"
             type="text"
             id="uvuId"
             name="uvuId"
@@ -42,8 +46,12 @@
         </div>
       </section>
 
-      <section class="form-section">
-        <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay">
+      <section class="bg-slate-300 rounded p-4 mb-4">
+        <h3
+          class="mb-4 text-lg font-semibold text-sky-600"
+          id="uvuIdDisplay"
+          data-cy="uvuIdDisplay"
+        >
           Student Logs <span id="uvuIdSpan"></span>
         </h3>
         <div class="logs-div">
@@ -62,8 +70,9 @@
             </li>
           </ul>
         </div>
-        <label>New Log</label><br />
+        <label class="text-slate-600" for="logBodyInput">New Log</label><br />
         <textarea
+          class="w-full bg-slate-100 p-1 rounded"
           id="logBodyInput"
           style="height: 75px"
           aria-label="add log textarea"
@@ -78,5 +87,6 @@
     </form>
     <script src="jql.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </body>
 </html>

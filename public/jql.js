@@ -29,6 +29,18 @@ class ElementCollection extends Array {
 
   attr(attr, val) {
     if (typeof val === 'string' || val instanceof String) {
+      if (attr == 'disabled') {
+        if (val == 'false') {
+          this.forEach((elem) => {
+            elem.removeAttribute('disabled')
+          })
+        } else {
+          this.forEach((elem) => {
+            elem.addAttribute('disabled', '')
+          })
+        }
+        return
+      }
       this.forEach((elem) => {
         elem.setAttribute(attr, val)
       })
@@ -49,9 +61,15 @@ class ElementCollection extends Array {
     })
   }
 
+  empty() {
+    this.forEach((elem) => {
+      elem.innerHTML = ''
+    })
+  }
+
   children(param) {
     if (typeof param === 'string' || param instanceof String) {
-      return new ElementCollection(...this.querySelectorAll(param))
+      return new ElementCollection(...this[0].querySelectorAll(param))
     } else {
       return new ElementCollection(param)
     }

@@ -1,11 +1,11 @@
-console.log($('div'))
+let $uvuIdInputDiv = $('.uvu-id')
+let $uvuIdInput = $('#uvuId')
+let $courseInput = $('#course')
+let $logsDiv = $('.logs-div')
 
-let uvuIdInputDiv = $('.uvu-id')
-let uvuIdInput = $('#uvuId')
-let courseInput = $('#course')
-let logsDiv = $('.logs-div')
-console.log(logsDiv)
-logsDiv.css('display', 'none')
+$logsDiv.css('display', 'none')
+
+// EVENT LISTENERS ====================================
 
 $('#logForm').on('submit', function (event) {
   event.preventDefault()
@@ -14,35 +14,37 @@ $('#logForm').on('submit', function (event) {
 $('#submit').on('click', postLog)
 
 // show uvuId textbox after course is selected
-courseInput.on('change', () => {
-  if (courseInput[0].selectedIndex != 0) {
-    uvuIdInputDiv.css('display', 'block')
+$courseInput.on('change', () => {
+  if ($courseInput[0].selectedIndex != 0) {
+    $uvuIdInputDiv.css('display', 'block')
     checkUvuId()
   } else {
-    uvuIdInputDiv.css('display', 'none')
+    $uvuIdInputDiv.css('display', 'none')
   }
 })
 
+$uvuIdInput.on('input', checkUvuId)
+
+// FUNCTION DEFINITIONS ===============================
+
 // check uvuId for proper input
 function checkUvuId() {
-  uvuId = uvuIdInput.val()
+  uvuId = $uvuIdInput.val()
 
   if (uvuId.length == 8) {
     refreshLogs()
   }
 }
-uvuIdInput.on('input', checkUvuId)
 
-function addEventsToLogs() {
+function bindEventToLogs() {
   $('#logsUl li').on('click', function () {
-    console.log($(this))
-    showHideLog(this)
+    showHideLog($(this))
   })
 }
 
 // toggle displaying of log text
-function showHideLog(log) {
-  logPre = log.querySelector('pre')
+function showHideLog($log) {
+  logPre = $log.children('pre')
   if (logPre.css('display') != 'none') logPre.css('display', 'none')
   else logPre.css('display', 'block')
 }
@@ -66,12 +68,10 @@ async function refreshCourseSelect() {
 
 // replace static course logs with logs from API
 async function refreshLogs() {
-  let logsList = $('#logsUl')
+  let $logsList = $('#logsUl')
 
   // clear log list
-  while (logsList.firstChild) {
-    logsList.removeChild(logsList.firstChild)
-  }
+  $logsList.empty()
 
   // fetch log info
   let courseId = $('#course').val()
@@ -82,17 +82,20 @@ async function refreshLogs() {
 
   //print log info
   for (log of json) {
-    logsList.append(
+    $logsList.append(
       `<li>
         <div><small>${log.date}</small></div>
         <pre><p>${log.text}</p></pre>
       </li>`
     )
   }
-  logsDiv.css('style', 'block')
+  $logsDiv.css('display', 'block')
 
-  $('#uvuIdSpan').text(`for ${uvuIdInput.val()}`)
-  addEventsToLogs()
+  $('#uvuIdSpan').text(`for ${$uvuIdInput.val()}`)
+  bindEventToLogs()
+
+  // document.querySelector('button').setAttribute('disabled','')
+  // document.querySelector('button').setAttribute('disabled', 'true')
   $('button').attr('disabled', 'false')
 }
 
@@ -112,8 +115,8 @@ function postLog(event) {
   let time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${amPm}`
 
   let json = {}
-  json.courseId = courseInput.val()
-  json.uvuId = uvuIdInput.val()
+  json.courseId = $courseInput.val()
+  json.uvuId = $uvuIdInput.val()
   json.date = `${date}, ${time}`
   json.text = $('#logBodyInput').val()
   json.id = createUUID()
