@@ -56,23 +56,23 @@ label {
 
 div.uvu-id {
   /* display: none; */
-  width: 100%;
+  /* width: 100%; */
 }
 
 ul {
-  list-style-type: none;
+  /* list-style-type: none;
   padding-left: 0;
-  margin-top: 0;
+  margin-top: 0; */
 }
 
 ul small {
-  font-weight: 600;
+  /* font-weight: 600;
   font-size: 1rem;
-  color: rgb(151, 226, 196);
+  color: rgb(151, 226, 196); */
 }
 
 ul pre {
-  margin: 0;
+  /* margin: 0; */
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -o-pre-wrap;
@@ -81,34 +81,34 @@ ul pre {
 }
 
 ul pre p {
-  margin: 0.25rem 0 0 0;
+  /* margin: 0.25rem 0 0 0; */
 }
 
 ul li {
-  padding: 0.75rem 0.75rem;
+  /* padding: 0.75rem 0.75rem;
   border: none;
   background-color: rgb(49, 53, 56);
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease; */
 }
 ul li:hover {
-  background-color: rgb(56, 60, 63);
+  /* background-color: rgb(56, 60, 63); */
 }
 
 button {
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem;
   padding: 0.5rem 1rem;
   background-color: rgb(151, 226, 196);
   border: none;
-  color: black;
+  color: black; */
 }
 button:hover {
-  background-color: rgb(151, 226, 196);
-  transition: all 0.25s;
+  /* background-color: rgb(151, 226, 196);
+  transition: all 0.25s; */
 }
 button:disabled,
 button[disabled] {
-  background-color: #a9a9a9;
-  color: rgb(87, 87, 87);
+  /* background-color: #a9a9a9;
+  color: rgb(87, 87, 87); */
 }

@@ -3,7 +3,9 @@ let $uvuIdInput = $('#uvuId')
 let $courseInput = $('#course')
 let $logsDiv = $('.logs-div')
 
-$logsDiv.css('display', 'none')
+$logsDiv.addClass('farty shite shoop')
+
+// $logsDiv.css('display', 'none') NEEDED
 
 // EVENT LISTENERS ====================================
 

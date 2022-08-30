@@ -10,15 +10,17 @@
     />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="bg-slate-100">
+  <body class="bg-white p-4">
     <form id="logForm">
-      <section class="bg-slate-300 rounded p-4 mb-4">
-        <h3 class="mb-4 text-lg font-semibold text-sky-600">
+      <section class="bg-slate-200 rounded p-4 mb-4">
+        <h3 class="mb-2 text-lg font-semibold text-sky-600">
           Student Information
         </h3>
-        <label class="text-slate-600" for="course">Course</label><br />
+        <label class="block mb-1 font-semibold text-slate-600" for="course"
+          >Course</label
+        >
         <select
-          class="w-full bg-slate-100 p-1 rounded"
+          class="w-full bg-white p-1 rounded"
           aria-label="Select Course"
           id="course"
           name="course"
@@ -27,14 +29,18 @@
           <option selected value="">Choose Courses</option>
           <option value="cs4690">CS 4690</option>
           <option value="cs4660">CS 4660</option>
-          <option value="cs3380">CS 3380</option></select
-        ><br />
+          <option value="cs3380">CS 3380</option>
+        </select>
 
         <div class="uvu-id hidden">
-          <label class="text-slate-600" for="uvuId">UVU ID</label><br />
+          <label
+            class="block mb-1 mt-3 font-semibold text-slate-600"
+            for="uvuId"
+            >UVU ID</label
+          >
 
           <input
-            class="w-full bg-slate-100 py-1 px-2 rounded"
+            class="w-full bg-white py-1 px-2 rounded"
             type="text"
             id="uvuId"
             name="uvuId"
@@ -46,9 +52,9 @@
         </div>
       </section>
 
-      <section class="bg-slate-300 rounded p-4 mb-4">
+      <section class="bg-slate-200 rounded p-4 mb-4">
         <h3
-          class="mb-4 text-lg font-semibold text-sky-600"
+          class="mb-2 text-lg font-semibold text-sky-600"
           id="uvuIdDisplay"
           data-cy="uvuIdDisplay"
         >
@@ -56,8 +62,27 @@
         </h3>
         <div class="logs-div">
           <ul data-cy="logs" id="logsUl">
-            <li>
-              <div><small>1/23/2021 1:23:36 PM</small></div>
+            <li
+              class="
+                group
+                py-1
+                px-3
+                rounded
+                border-2 border-teal-600
+                hover:border-teal-500 hover:cursor-pointer
+              "
+            >
+              <div>
+                <small
+                  class="
+                    text-sm
+                    font-semibold
+                    text-teal-600
+                    group-hover:text-teal-500
+                  "
+                  >1/23/2021 1:23:36 PM</small
+                >
+              </div>
               <pre><p>Initial comment. Hello World</p></pre>
             </li>
             <li>
@@ -70,15 +95,18 @@
             </li>
           </ul>
         </div>
-        <label class="text-slate-600" for="logBodyInput">New Log</label><br />
+        <label
+          class="block mb-1 font-semibold text-slate-600"
+          for="logBodyInput"
+          >New Log
+        </label>
         <textarea
-          class="w-full bg-slate-100 p-1 rounded"
+          class="w-full bg-white p-1 rounded"
           id="logBodyInput"
           style="height: 75px"
           aria-label="add log textarea"
           data-cy="log_textarea"
-        ></textarea
-        ><br />
+        ></textarea>
 
         <button id="submit" type="submit" data-cy="add_log_btn" disabled>
           Add Log

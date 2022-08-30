@@ -27,6 +27,20 @@ class ElementCollection extends Array {
     else return this[0].style[propCamel]
   }
 
+  addClass(cls) {
+    arr = cls.split(' ')
+    console.log(arr)
+    // this.forEach((elem) => {
+    //   elem.classList.add(className)
+    // })
+  }
+
+  removeClass(className) {
+    this.forEach((elem) => {
+      elem.classList.remove(className)
+    })
+  }
+
   attr(attr, val) {
     if (typeof val === 'string' || val instanceof String) {
       if (attr == 'disabled') {
