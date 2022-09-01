@@ -91,19 +91,19 @@ async function refreshLogs() {
   }
   $logsList.children('li').addClass(
     `group
-    mb-4
+      mb-4
+      rounded-r-[1.25rem]
       py-1 px-3
-      rounded
-      border-2
-      border-amber-600
-      hover:border-amber-500 hover:cursor-pointer
+      border-l-2
+      border-sky-600
+      hover:border-sky-500 hover:cursor-pointer
       hover:bg-slate-100`
   )
   $logsList.children('small').addClass(
     `text-sm
       font-bold
-      text-amber-600
-      group-hover:text-amber-500`
+      text-sky-600
+      group-hover:text-sky-500`
   )
   $logsList.children('pre').addClass(`whitespace-pre-wrap`)
   $logsDiv.css('display', 'block')
