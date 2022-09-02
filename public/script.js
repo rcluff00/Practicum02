@@ -66,7 +66,7 @@ async function refreshCourseSelect() {
   }
 }
 
-// replace static course logs with logs from API
+// refresh logs list with current input values
 async function refreshLogs() {
   let $logsList = $('#logsUl')
 
@@ -79,6 +79,8 @@ async function refreshLogs() {
   let json = await fetchJson(
     `https://json-server-5phigi--3000.local.webcontainer.io/api/v1/logs?courseId=${courseId}&uvuId=${uvuId}`
   )
+
+  const axios = require('axios').default
 
   //print log info
   for (log of json) {
