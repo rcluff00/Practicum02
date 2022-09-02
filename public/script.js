@@ -4,6 +4,7 @@ let $courseInput = $('#course')
 let $logsDiv = $('.logs-div')
 
 $logsDiv.css('display', 'none')
+refreshCourseSelect()
 
 // EVENT LISTENERS ====================================
 
@@ -12,6 +13,8 @@ $('#logForm').on('submit', function (event) {
 })
 
 $('#submit').on('click', postLog)
+
+$uvuIdInput.on('input', checkUvuId)
 
 // show uvuId textbox after course is selected
 $courseInput.on('change', () => {
@@ -22,8 +25,6 @@ $courseInput.on('change', () => {
     $uvuIdInputDiv.css('display', 'none')
   }
 })
-
-$uvuIdInput.on('input', checkUvuId)
 
 // FUNCTION DEFINITIONS ===============================
 
@@ -36,6 +37,7 @@ function checkUvuId() {
   }
 }
 
+// bing toggle visibility function to logs
 function bindEventToLogs() {
   $('#logsUl li').on('click', function () {
     toggleLog($(this))
@@ -99,6 +101,7 @@ async function refreshLogs() {
     })
 }
 
+// print logs from given data
 function showLogs(json) {
   let $logsList = $('#logsUl')
 
@@ -140,6 +143,7 @@ function showLogs(json) {
   $('button').attr('disabled', 'false')
 }
 
+// create new log
 function postLog(event) {
   event.preventDefault()
   let d = new Date()
@@ -168,8 +172,7 @@ function postLog(event) {
   $('#logBodyInput').val('')
 }
 
-refreshCourseSelect()
-
+// creat unique id
 function createUUID() {
   return 'xxxxxxx'.replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
