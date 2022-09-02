@@ -57,30 +57,53 @@ async function refreshCourseSelect() {
   let url =
     'https://json-server-5phigi--3000.local.webcontainer.io/api/v1/courses'
 
-  let json = await fetchJson(url)
-
-  for (let i = 0; i < json.length; i++) {
-    courseSelect.append(
-      `<option value="${json[i].id}">${json[i].display}</option>`
-    )
-  }
+  axios
+    .get(url)
+    .then(function (response) {
+      // handle success
+      console.log(response)
+      let json = response.data
+      for (let i = 0; i < json.length; i++) {
+        courseSelect.append(
+          `<option value="${json[i].id}">${json[i].display}</option>`
+        )
+      }
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error)
+    })
 }
 
 // refresh logs list with current input values
 async function refreshLogs() {
+  let courseId = $('#course').val()
+  let uvuId = $('#uvuId').val()
+  let url = `https://json-server-5phigi--3000.local.webcontainer.io/api/v1/logs`
+
+  // fetch log info
+  axios
+    .get(url, {
+      params: {
+        courseId: courseId,
+        uvuId: uvuId,
+      },
+    })
+    .then(function (response) {
+      let json = response.data
+      showLogs(json)
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error)
+    })
+}
+
+function showLogs(json) {
   let $logsList = $('#logsUl')
 
   // clear log list
   $logsList.empty()
-
-  // fetch log info
-  let courseId = $('#course').val()
-  let uvuId = $('#uvuId').val()
-  let json = await fetchJson(
-    `https://json-server-5phigi--3000.local.webcontainer.io/api/v1/logs?courseId=${courseId}&uvuId=${uvuId}`
-  )
-
-  const axios = require('axios').default
 
   //print log info
   for (log of json) {
@@ -91,6 +114,7 @@ async function refreshLogs() {
       </li>`
     )
   }
+
   $logsList.children('li').addClass(
     `group
       mb-4
@@ -113,17 +137,7 @@ async function refreshLogs() {
   $('#uvuIdSpan').text(`for ${$uvuIdInput.val()}`)
   bindEventToLogs()
 
-  // document.querySelector('button').setAttribute('disabled','')
-  // document.querySelector('button').setAttribute('disabled', 'true')
   $('button').attr('disabled', 'false')
-}
-
-function postData(url, data) {
-  fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  })
 }
 
 function postLog(event) {
@@ -133,27 +147,25 @@ function postLog(event) {
   let amPm = d.getHours() < 12 ? 'AM' : 'PM'
   let time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${amPm}`
 
-  let json = {}
-  json.courseId = $courseInput.val()
-  json.uvuId = $uvuIdInput.val()
-  json.date = `${date}, ${time}`
-  json.text = $('#logBodyInput').val()
-  json.id = createUUID()
+  let url = 'https://json-server-5phigi--3000.local.webcontainer.io/api/v1/logs'
 
-  postData(
-    'https://json-server-5phigi--3000.local.webcontainer.io/api/v1/logs',
-    json
-  )
+  axios
+    .post(url, {
+      courseId: $courseInput.val(),
+      uvuId: $uvuIdInput.val(),
+      date: `${date}, ${time}`,
+      text: $('#logBodyInput').val(),
+      id: createUUID(),
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 
   refreshLogs()
   $('#logBodyInput').val('')
-}
-
-// return json from fetch
-async function fetchJson(src) {
-  let response = await fetch(src)
-  let myJson = await response.json()
-  return myJson
 }
 
 refreshCourseSelect()
